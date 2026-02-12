@@ -1,32 +1,22 @@
 import React from 'react'
-import{useState ,useEffect} from 'react';
+import{useState ,useEffect, useContext} from 'react';
 import axios from 'axios';
 import MovieCard from './MovieCard.jsx';
 import Pagination from './Pagination.jsx';
+import {genreContext} from '../App';
 
-const Home = ({addToWatchlist, query, setQuery}) => {
-  const[movies, setMovies] = useState([]);  //movies state management work 
-  const [page, setPage] = useState(1);  //for pagination 
-  const[genre, setGenre] = useState({});
-
-  const getGenre = async() => {
-    let res = await axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=8e8f20999ead7a8769aa1088fa689515');
-    const genreObj ={};
-    res.data.genres.forEach((g) => {
-      genreObj[g.id] = g.name;
-    });
-    setGenre(genreObj);
-  }
-
+const Home = ({addToWatchlist, query, setQuery, movies, setMovies, page, setPage, selectedGenre}) => {
+  const {genre, setGenre} = useContext(genreContext); 
+  
   useEffect(function(){
-    if(query === ''){
+    if(selectedGenre) return ;
+    else if(query === ''){
       getMovies();
     }
     else{
       searchMovies();
     }
-    getGenre();
-  },[query, page]);
+  },[query, page, selectedGenre]);
   function next(){
   setPage(page+1);    //next page 
   scrollTo(0,0);
@@ -60,7 +50,7 @@ const searchMovies = async() => {
     <div className= "home">
       <h1>🙋🏻 Trending 🎥 for You!! </h1>
         <div className="card-container">
-          <MovieCard movies={movies} genre={genre}  addToWatchlist={addToWatchlist}/>
+          <MovieCard movies={movies} genre={genre} addToWatchlist={addToWatchlist}/>
         </div>
 
       <Pagination page={page} prev={prev} next={next} MoveToTop={MoveToTop} BackToHome={BackToHome} genre={genre}/>

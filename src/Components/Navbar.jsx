@@ -1,7 +1,8 @@
 import React from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
-
-const Navbar = ({query, setQuery}) => {
+import Modal from './Modal';
+import {useState} from 'react';
+const Navbar = ({query, setQuery , showGenre, setShowGenre}) => {
   const location = useLocation();
   return (
     <div className="navbar">
@@ -10,8 +11,7 @@ const Navbar = ({query, setQuery}) => {
         <li><NavLink to = '/'>Home</NavLink></li>
         {location.pathname === '/' && ( 
           <li>
-          <input type="text" placeholder="Search movies..." 
-           value={query} 
+          <input type="text" placeholder="Search movies..." value={query} 
            onChange={(e) => {
               setQuery(e.target.value);
            }} 
@@ -23,6 +23,7 @@ const Navbar = ({query, setQuery}) => {
           />
 
         </li>)}<br/>
+        <button onClick = {()=> {setShowGenre(true)}}>Explore Genres</button>
         <li><NavLink to = '/watchlist'>Watchlist</NavLink></li>
       </ul>
     </div>
