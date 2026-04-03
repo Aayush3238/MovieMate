@@ -51,13 +51,18 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+  flex-wrap: wrap;
 }
 
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+}
 
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: #38bdf8;   
+  color: #38bdf8;
   letter-spacing: 1px;
   cursor: pointer;
 }
@@ -444,12 +449,92 @@ body {
   }
 }
 @media (max-width: 480px) {
+  .navbar {
+    padding: 12px 14px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nav li,
+  .nav input,
+  .nav button {
+    width: 100%;
+  }
+
+  .nav a {
+    display: inline-block;
+    text-align: center;
+    padding: 8px;
+    width: 100%;
+  }
+
+  .nav input {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .nav button {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+  }
+
+  .card img {
+    height: 180px;
+  }
+
+  .card h3 {
+    font-size: 14px;
+  }
+
+  .desc {
+    font-size: 12px;
+  }
+
   .pagination {
     flex-direction: column;
     gap: 10px;
   }
 
   .pagination button {
+    width: 100%;
+  }
+
+  .Watchlist {
+    grid-template-columns: 1fr;
+  }
+
+  .watchCard img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card img {
+    height: 220px;
+  }
+
+  .watchCard img {
+    height: 260px;
+  }
+
+  .home {
+    padding: 16px;
+  }
+
+  .heading {
+    margin: 20px 0;
+  }
+
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .nav input {
     width: 100%;
   }
 }

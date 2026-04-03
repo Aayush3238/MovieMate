@@ -7,24 +7,25 @@ const Navbar = ({query, setQuery , showGenre, setShowGenre}) => {
   return (
     <div className="navbar">
       <ul className="nav">
-        <li><NavLink to = '/' >MovieMate</NavLink></li>
-        <li><NavLink to = '/'>Home</NavLink></li>
-        {location.pathname === '/' && ( 
-          <li>
-          <input type="text" placeholder="Search movies..." value={query} 
-           onChange={(e) => {
-              setQuery(e.target.value);
-           }} 
-           onKeyDown={(e) => {
-            if(e.key === "Enter"){
-              setQuery(e.target.value);
-            }
-           }}
-          />
-
-        </li>)}<br/>
-        <button onClick = {()=> {setShowGenre(true)}}>Explore Genres</button>
-        <li><NavLink to = '/watchlist'>Watchlist</NavLink></li>
+        <li className="nav-item logo"><NavLink to="/">MovieMate</NavLink></li>
+        <li className="nav-item"><NavLink to="/">Home</NavLink></li>
+        {location.pathname === '/' && (
+          <li className="nav-item nav-search">
+            <input
+              type="text"
+              placeholder="Search movies..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && setQuery(e.target.value)}
+            />
+          </li>
+        )}
+        <li className="nav-item">
+          <button className="explore-btn" onClick={() => setShowGenre(true)}>
+            Explore Genres
+          </button>
+        </li>
+        <li className="nav-item"><NavLink to="/watchlist">Watchlist</NavLink></li>
       </ul>
     </div>
   )
